@@ -122,14 +122,14 @@ USE_TZ = True
 
 # STATIC_URL = '/static/'
 
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
-
-
+# djang-heroku setting
+import django_heroku
+django_heroku.settings(locals())
+# static files settings
 STATIC_URL = '/static/'
+# location where you will store your static files like bootstrap
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+   os.path.join(BASE_DIR, "static"),
 ]
+# location where django collect all static files
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
